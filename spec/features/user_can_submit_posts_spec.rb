@@ -1,8 +1,12 @@
 require 'rails_helper'
+require 'create_user'
+require 'sign_in'
 
 RSpec.feature "Timeline", type: :feature do
   scenario "Can submit posts and view them" do
     visit "/posts"
+    create_user
+    sign_in
     click_link "New post"
     fill_in "Message", with: "Hello, world!"
     click_button "Submit"
@@ -11,6 +15,8 @@ RSpec.feature "Timeline", type: :feature do
 
   scenario "Show the newest post first" do
     visit "/posts"
+    create_user
+    sign_in
     click_link "New post"
     fill_in "Message", with: "Hello, world!"
     click_button "Submit"
@@ -19,5 +25,5 @@ RSpec.feature "Timeline", type: :feature do
     click_button "Submit"
     expect(Post.order(created_at: :desc)[0].message).to eq("Hello, acebook-team2!")
   end
-  
+
 end

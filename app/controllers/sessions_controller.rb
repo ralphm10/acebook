@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   end
 
   def create
+
+    # auth = request.env["omniauth.auth"]
+    # user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+
     @user = User.find_by(email: params[:session][:email])
     if @user&.authenticate(params[:session][:password])
       session[:id] = @user.id
@@ -13,6 +17,8 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+
+
 
   def destroy
     session.delete(:id)

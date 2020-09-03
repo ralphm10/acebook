@@ -37,8 +37,8 @@
             Contacts
           </div>
           <p><-- Your contacts go here --></p>
-          <% current_user.get_friends.each do |friend| %>
-            <% friend.first_name %> <br/>
+          <% current_user.friends.each do |friend| %>
+            <%= friend.first_name %> <br/>
           <% end %>
         </div>
       <% end %>

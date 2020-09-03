@@ -1,5 +1,13 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+
+  has_many :friend_requests_as_requestor,
+           foreign_key: :requestor_id,
+           class_name: "FriendRequest"
+  has_many :friend_requests_as_receiver,
+           foreign_key: :receiver_id,
+           class_name: "FriendRequest"
+
   has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
 
@@ -56,10 +64,6 @@ class User < ApplicationRecord
 
   def self.password_match?(password, confirmation)
     password == confirmation
-  end
-
-  def get_friends
-    friends.map { |i| i.name }
   end
 
   def accept_friend

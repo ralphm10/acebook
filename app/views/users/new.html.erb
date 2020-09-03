@@ -46,6 +46,10 @@
         </div>
         <br/>
         <div style="text-align: center">
+          <div class="danger">
+            <%= flash[:danger] %>
+          </div>
+
           <div>
             <%= f.submit 'Create User', :class => 'submit' %>
           </div>
@@ -53,8 +57,5 @@
       </div>
     <% end %>
 
-  <div class="danger">
-    <%= flash[:danger] %>
-  </div>
 
 </div>

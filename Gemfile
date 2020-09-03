@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bcrypt'
+# OmniAuthentication
 gem 'omniauth-github'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
@@ -30,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -37,6 +41,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'database_cleaner-active_record'
   gem 'selenium-webdriver'
+  gem 'pry'
   gem 'rspec-rails', '~> 3.5'
   gem 'rubocop'
   gem 'simplecov'

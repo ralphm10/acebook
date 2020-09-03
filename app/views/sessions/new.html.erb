@@ -1,24 +1,40 @@
 <div class="login-form">
-  <div style="text-align: center">Please enter your login credentials below:</div>
+  <div style="text-align: center">Please enter your login credentials below:
+    <div
+        <%= link_to 'link to sign in', :developer_auth %>
+    </div>
+  </div>
   <div>
     <%= form_with(url: login_path, scope: :session, local: true) do |form| %>
 
 
-      <div class="actions", style="text-align: center">
+      <div class="actions" style="text-align: center">
         <br/><br/>
         <%= form.label :email %>
         <%= form.email_field :email, id: 'email' %>
         <br/><br/>
 
+
+
         <%= form.label :password %>
         <%= form.password_field :password, id: 'password' %>
         <br/><br/>
 
-        <%= form.submit "Log in", :class => 'submit', id: 'Login' %>
+        <%= form.submit "Log in", class: 'submit', id: 'Login' %>
       </div>
 
     <% end %>
+
   </div>
+
+  <div style="margin-top: 5px;">
+    <%= form_with(url: github_auth_path , scope: :session, local: true) do |form| %>
+      <div class="actions" style="text-align: center">
+        <%= form.submit "Log in with Github", class: 'submit', id: 'Github_Login' %>
+      </div>
+    <% end %>
+  </div>
+
 
 
   <div class="danger">
@@ -28,5 +44,3 @@
   <div class="notice">
     <%= flash[:notice] %>
   </div>
-
-</div>

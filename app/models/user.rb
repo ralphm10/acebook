@@ -14,6 +14,7 @@ class User < ApplicationRecord
     count
   end
 
+
   def self.validation_chain(auth_params)
     return 1 unless email_valid?(auth_params[:email])
     return 2 unless first_name_valid?(auth_params[:first_name])
@@ -26,6 +27,24 @@ class User < ApplicationRecord
 
   def self.first_name_valid?(first_name)
     !first_name.empty?
+  end
+
+  def self.sign_in_from_omniauth(auth)
+    find_by(email: auth[:info][:email],
+            provider: auth[:provider],
+            uid: auth[:uid],
+            first_name: auth[:info][:name]) || create_user_from_omniauth(auth)
+  end
+
+  def self.create_user_from_omniauth(auth)
+    create(
+      email: auth[:info][:email],
+      provider: auth[:provider],
+      uid: auth[:uid],
+      first_name: auth[:info][:name],
+      password: 'mUc3m00R',
+      password_confirmation: 'mUc3m00R'
+    )
   end
 
 end

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-
   before 'sign-up and login' do
     user = User.new(first_name: 'test', email: 'test@test.com', password: '123123')
     instantiated_user = User.find_by(id: user.id)

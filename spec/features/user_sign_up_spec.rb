@@ -15,7 +15,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in('password', with: '123123')
     fill_in('password_confirmation', with: '123123')
     click_button('Create User')
-    expect(page).to have_content("Please check submitted information")
+    expect(page).to have_content("Invalid email address")
   end
 
   scenario "Password too short" do
@@ -26,7 +26,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in('password', with: '12312')
     fill_in('password_confirmation', with: '12312')
     click_button('Create User')
-    expect(page).to have_content("Please check submitted information")
+    expect(page).to have_content("Password must be between 6 and 10 characters")
   end
 
   scenario "Password too long" do
@@ -37,7 +37,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in('password', with: '123123123123')
     fill_in('password_confirmation', with: '123123123123')
     click_button('Create User')
-    expect(page).to have_content("Please check submitted information")
+    expect(page).to have_content("Password must be between 6 and 10 characters")
   end
 
   scenario "No first name" do
@@ -47,7 +47,7 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in('password', with: '123123')
     fill_in('password_confirmation', with: '123123')
     click_button('Create User')
-    expect(page).to have_content("Please check submitted information")
+    expect(page).to have_content("First name is a required field")
   end
 
   scenario "Password's don't match" do

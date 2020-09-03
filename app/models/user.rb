@@ -18,6 +18,7 @@ class User < ApplicationRecord
     return 1 unless email_valid?(auth_params[:email])
     return 2 unless first_name_valid?(auth_params[:first_name])
     return 3 unless password_valid?(auth_params[:password])
+    return 4 unless password_match?(auth_params[:password], auth_params[:password_confirmation])
     nil
   end
 
@@ -31,6 +32,10 @@ class User < ApplicationRecord
 
   def self.password_valid?(password)
     password.length <= 10 && password.length >= 6
+  end
+
+  def self.password_match?(password, confirmation)
+    password == confirmation
   end
 
 end

@@ -1,5 +1,9 @@
 <div class="login-form">
-  <div style="text-align: center">Please enter your login credentials below:</div>
+  <div style="text-align: center">Please enter your login credentials below:
+    <div
+        <%= link_to 'link to sign in', :developer_auth %>
+    </div>
+  </div>
   <div>
     <%= form_with(url: login_path, scope: :session, local: true) do |form| %>
 
@@ -9,6 +13,8 @@
         <%= form.label :email %>
         <%= form.email_field :email, id: 'email' %>
         <br/><br/>
+
+
 
         <%= form.label :password %>
         <%= form.password_field :password, id: 'password' %>
@@ -38,5 +44,3 @@
   <div class="notice">
     <%= flash[:notice] %>
   </div>
-
-</div>

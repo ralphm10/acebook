@@ -14,6 +14,7 @@ module Acebook
       #provider :developer if Rails.env.development?
       provider :github, 'b0a56ad5393dbd146bf1', '1ad031423680d731271322ffb30e70b31896c2ca'
     end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

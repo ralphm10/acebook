@@ -10,6 +10,11 @@
     </div>
 
     <div class="column middle">
+
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+
       <div id="subtitle">
         Global posts feed
       </div>
@@ -42,7 +47,7 @@
                   <%= form_with(scope: :comment, url: post_comment_path(post, id: comment.id), method: :update) do |form| %>
                     <%= form.text_area :message, id: 'update_comment' %>
                     <br/>
-                    <%= form.submit "Update", method: :update%>
+                    <%= form.submit "Update Comment", method: :update%>
                   <% end %>
                 </div>
               <% end %>
@@ -60,7 +65,7 @@
 
             <%= form_with(model: [ post, post.comments.build ], local: true) do |form| %>
             <p>
-              <%= form.text_area :message %>
+              <%= form.text_area :message, id: 'add_comment'%>
             </p>
               <p><%= form.submit 'New comment' %></p>
             <% end %>
@@ -72,7 +77,7 @@
               <%= form_with(model: post) do |form| %>
                 <%= form.text_area :message, id: 'update_content' %>
                 <br/>
-                <%= form.submit "Update", :class => 'submit' %>
+                <%= form.submit "Update Post", :class => 'submit' %>
               <% end %>
             </div>
           <% end %>

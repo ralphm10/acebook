@@ -29,6 +29,8 @@ class SessionsController < ApplicationController
     end
   end
 
+
+
   def destroy
     session.delete(:omniauth)
     session.delete(:id)

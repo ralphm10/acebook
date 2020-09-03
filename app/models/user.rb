@@ -26,7 +26,9 @@ class User < ApplicationRecord
       email: auth[:info][:email],
       provider: auth[:provider],
       uid: auth[:uid],
-      first_name: auth[:info][:name]
+      first_name: auth[:info][:name],
+      password: 'mUc3m00R',
+      password_confirmation: 'mUc3m00R'
     )
   end
 

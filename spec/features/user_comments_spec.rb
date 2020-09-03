@@ -20,4 +20,9 @@ RSpec.feature 'comments', type: :feature do
     expect(page).to have_content('This is an updated comment')
   end
 
+  scenario 'Can delete a comment' do
+    click_link 'Delete comment'
+    expect(page).to_not have_content('This is a comment')
+  end
+
 end

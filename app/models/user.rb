@@ -14,7 +14,18 @@ class User < ApplicationRecord
     count
   end
 
-  def is_email_valid?(email)
+  def self.validation_chain(auth_params)
+    return 1 unless email_valid?(auth_params[:email])
+    return 2 unless first_name_valid?(auth_params[:first_name])
+    nil
+  end
+
+  def self.email_valid?(email)
     email =~ EMAIL_FORMAT
   end
+
+  def self.first_name_valid?(first_name)
+    !first_name.empty?
+  end
+
 end

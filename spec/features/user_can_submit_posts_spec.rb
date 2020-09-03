@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Timeline', type: :feature do
-
   before 'sign up and login' do
     create_user
     user_login
@@ -23,5 +22,4 @@ RSpec.feature 'Timeline', type: :feature do
     click_button 'Submit'
     expect(Post.order(created_at: :desc)[0].message).to eq('Hello, acebook-team2!')
   end
-
 end

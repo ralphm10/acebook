@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'comments', type: :feature do
-
   before 'sign up, login, make post, comment on post' do
     create_user
     user_login
@@ -24,5 +23,4 @@ RSpec.feature 'comments', type: :feature do
     click_link 'Delete comment'
     expect(page).to_not have_content('This is a comment')
   end
-
 end

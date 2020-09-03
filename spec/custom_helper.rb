@@ -16,8 +16,8 @@ def user_login
 end
 
 def log_out_and_in
-  click_link "Log out"
-  click_link "Log in"
+  click_link 'Log out'
+  click_link 'Log in'
 end
 
 def create_post

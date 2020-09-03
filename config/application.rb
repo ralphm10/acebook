@@ -10,9 +10,9 @@ module Acebook
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-
     config.middleware.use OmniAuth::Builder do
-      provider :developer
+      #provider :developer if Rails.env.development?
+      provider :github, 'b0a56ad5393dbd146bf1', '1ad031423680d731271322ffb30e70b31896c2ca'
     end
 
     # Settings in config/environments/* take precedence over those specified here.

@@ -22,9 +22,9 @@
   </div>
 
   <div style="margin-top: 5px;">
-    <%= form_with(url: github_auth_path, scope: :session, local: true) do |form| %>
+    <%= form_with(url: github_auth_path , scope: :session, local: true) do |form| %>
       <div class="actions" style="text-align: center">
-        <%= form.submit "Log in with Github", class: 'submit', id: 'Login' %>
+        <%= form.submit "Log in with Github", class: 'submit', id: 'Github_Login' %>
       </div>
     <% end %>
   </div>

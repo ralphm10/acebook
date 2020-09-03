@@ -24,3 +24,8 @@ def create_post
   fill_in 'message_content', with: 'Hello, world!'
   click_button 'Submit'
 end
+
+def create_comment
+  fill_in 'add_comment', with: 'This is a comment'
+  click_button 'New comment'
+end

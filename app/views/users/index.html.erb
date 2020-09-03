@@ -1,0 +1,37 @@
+<div>
+  <br/>
+  <div class="row">
+
+    <div class="column middle">
+
+      <div class="notice">
+        <%= flash[:notice] %>
+      </div>
+
+      <div id="subtitle">
+        Users
+
+        <table class="user_table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @users.map do |user| %>
+            <tr>
+              <td><img src=https://loremflickr.com/140/100></td>
+              <td><%= user.first_name %></td>
+              <td><%= user.email.gsub(/.{0,4}@/, '####@') %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>

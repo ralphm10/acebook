@@ -4,9 +4,14 @@ class UsersController < ApplicationController
     current_user
   end
 
+  def index
+    @users = User.all
+  end
+
   def new
     redirect_to '/posts' if current_user
-    @user = User.new
+    @friends = User.find(current_user.id).get_friends
+    @users = User.all
   end
 
   def create

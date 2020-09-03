@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   validates :first_name, presence: true
   EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
@@ -54,6 +56,14 @@ class User < ApplicationRecord
 
   def self.password_match?(password, confirmation)
     password == confirmation
+  end
+
+  def get_friends
+    friends.map { |i| i.name }
+  end
+
+  def accept_friend
+
   end
 
 end

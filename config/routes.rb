@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/home', to: 'users#show' #test
 
+  get 'auth/developer', :as => 'developer_auth'
+  match 'auth/:provider/callback', to: 'sessions#create', :via => [:get, :post ]
+
   get '/create_session', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 

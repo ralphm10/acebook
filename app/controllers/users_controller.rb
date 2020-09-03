@@ -6,12 +6,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @friends = User.find(current_user.id).get_friends
   end
 
   def new
     redirect_to '/posts' if current_user
-    @friends = User.find(current_user.id).get_friends
-    @users = User.all
+    @user = User.new
   end
 
   def create

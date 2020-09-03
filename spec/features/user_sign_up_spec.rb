@@ -58,6 +58,6 @@ RSpec.feature "Sign Up", type: :feature do
     fill_in('password', with: '123123')
     fill_in('password_confirmation', with: '123321')
     click_button('Create User')
-    expect(page).to have_content("Please check submitted information")
+    expect(page).to have_content("Passwords do not match")
   end
 end

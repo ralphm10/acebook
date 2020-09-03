@@ -14,4 +14,7 @@ class User < ApplicationRecord
     count
   end
 
+  def is_email_valid?(email)
+    email =~ EMAIL_FORMAT
+  end
 end

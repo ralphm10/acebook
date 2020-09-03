@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
       flash[:alert] = 'Only the owner of the comment may edit the comment'
     elsif @comment.updatable? && (@comment.poster.to_i == current_user.id)
       @comment.update(message: comment_params['message'])
+      flash[:alert] = 'Comment updated'
     end
     reload_page
   end
@@ -30,6 +31,7 @@ class CommentsController < ApplicationController
     @comment = Comment.create(poster: current_user.id,
                               message: comment_params['message'],
                               post: Post.find(comment_params['post_id']))
+    flash[:alert] = 'Comment added'
     reload_page
   end
 

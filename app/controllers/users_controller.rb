@@ -16,6 +16,14 @@ class UsersController < ApplicationController
       flash[:notice] = 'Successfully created user account'
       session[:id] = @user.id
       redirect_to '/posts'
+    # elsif
+    #   !@user.is_email_valid?(params[:email])
+    #   flash[:danger] = 'Invalid email'
+    #   redirect_to '/users/new'
+    elsif
+      !@user[:first_name]
+      flash[:danger] = 'First name is a required field'
+      redirect_to '/users/new'
     else
       flash[:danger] = 'Please check submitted information'
       redirect_to '/users/new'

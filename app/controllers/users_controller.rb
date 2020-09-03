@@ -20,22 +20,6 @@ class UsersController < ApplicationController
     flash[:notice] = 'Successfully created user account'
     session[:id] = @user.id
     redirect_to '/posts'
-
-    #if !User.email_valid?(get_params[:email])
-    #  flash[:danger] = 'Invalid email'
-    # go_to_registration_page
-    #elsif get_params[:first_name].empty?
-    # flash[:danger] = 'First name is a required field'
-    # go_to_registration_page
-    #elsif !@user.created_at
-    # flash[:danger] = 'Please check submitted information'
-    # go_to_registration_page
-    #elsif @user.created_at
-    # @user.save
-    #  flash[:notice] = 'Successfully created user account'
-    # session[:id] = @user.id
-    # redirect_to '/posts'
-    #end
   end
 
   private

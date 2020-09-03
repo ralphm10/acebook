@@ -14,12 +14,15 @@ Rails.application.routes.draw do
   delete '/posts/:id/comments', to: 'comments#destroy'
   post '/posts/:post_id/comments/:id', to: 'comments#update'
   get '/posts/:post_id/comments/:id', to: 'comments#show'
-  resources :users
 
+  resources :users
   resources :posts do
     resources :comments
   end
 
-  get 'auth/:provider/callback' => "sessions#create"
+  get 'auth/developer', as: 'developer_auth'
+  get 'auth/github', as: 'github_auth'
+  match 'auth/:provider/callback' => 'sessions#create', via: [:get, :post]
+
   root 'users#new'
 end

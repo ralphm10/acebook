@@ -17,6 +17,7 @@ class User < ApplicationRecord
   def self.validation_chain(auth_params)
     return 1 unless email_valid?(auth_params[:email])
     return 2 unless first_name_valid?(auth_params[:first_name])
+    return 3 unless password_valid?(auth_params[:password])
     nil
   end
 
@@ -26,6 +27,10 @@ class User < ApplicationRecord
 
   def self.first_name_valid?(first_name)
     !first_name.empty?
+  end
+
+  def self.password_valid?(password)
+    password.length <= 10 && password.length >= 6
   end
 
 end

@@ -13,6 +13,8 @@ class UsersController < ApplicationController
     err_code = User.validation_chain(get_params)
     flash[:danger] = 'Invalid email' if err_code == 1
     flash[:danger] = 'First name is a required field' if err_code == 2
+    flash[:danger] = 'Password must be between 6 and 10 characters' if err_code == 3
+
     return go_to_registration_page if err_code
 
     @user = User.new(get_params)

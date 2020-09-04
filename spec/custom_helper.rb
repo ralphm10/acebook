@@ -5,7 +5,7 @@ def create_user
   fill_in('email', with: 'test@test.com')
   fill_in('password', with: '123123')
   fill_in('password_confirmation', with: '123123')
-  click_button('Create User')
+  click_button('Sign Up')
 end
 
 def user_login
@@ -27,5 +27,5 @@ end
 
 def create_comment
   fill_in 'add_comment', with: 'This is a comment'
-  click_button 'New comment'
+  click_button 'New Comment'
 end

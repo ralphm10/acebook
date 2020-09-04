@@ -3,10 +3,6 @@ class FriendshipsController < ApplicationController
 
   def show; end
 
-  def edit
-    reload_page
-  end
-
   def create
     flash[:notice] = 'New friend added'
     current_user.add_friend(get_params[:friend_b_id])
@@ -14,7 +10,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Friend removed'
+    flash[:notice] = 'Removal complete'
     current_user.remove_friend(get_params[:friend_b_id])
     reload_page
   end
@@ -24,5 +20,4 @@ class FriendshipsController < ApplicationController
   def get_params
     params.fetch(:friendship, {}).permit(:friend_a_id, :friend_b_id)
   end
-
 end

@@ -1,11 +1,26 @@
 AllCops:
+
+  NewCops: enable
+
   Exclude:
+    - 'app/channels/**/*'
     - 'app/jobs/*'
+    - 'config/environments/*'
+    - 'bin/*'
+    - 'db/schema.rb'
     - 'Gemfile'
     - 'Rakefile'
-    - 'app/channels/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'feature', 'define']

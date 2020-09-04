@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
     @comments = Comment.order(created_at: :desc)
   end
 
-
   def update
     return if comment_params['message'].empty?
 
@@ -17,7 +16,8 @@ class CommentsController < ApplicationController
     return 'INVALID ID' if @comment.nil?
 
     if !@comment.updatable? && (@comment.poster.to_i == current_user.id)
-      flash[:alert] = "#{@comment.update_time} seconds have elapsed since the comment was created. It can no longer be updated"
+      flash[:alert] = "#{@comment.update_time} seconds have elapsed since
+      the comment was created. It can no longer be updated"
     elsif @comment.updatable? && (@comment.poster.to_i != current_user.id)
       flash[:alert] = 'Only the owner of the comment may edit the comment'
     elsif @comment.updatable? && (@comment.poster.to_i == current_user.id)
@@ -35,7 +35,6 @@ class CommentsController < ApplicationController
     reload_page
   end
 
-
   def destroy
     @comment = Comment.find(params[:id])
     if @comment.poster.to_i == current_user.id
@@ -52,5 +51,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.fetch(:comment, {}).permit(:message).merge(post_id: params['post_id'])
   end
-
 end

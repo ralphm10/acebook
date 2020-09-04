@@ -27,6 +27,7 @@ RSpec.feature 'Sign Up', type: :feature do
     fill_in('password_confirmation', with: '12312')
     click_button('Sign Up')
     expect(page).to have_content("Password must be between 6 and 10 characters")
+
   end
 
   scenario 'Password too long' do

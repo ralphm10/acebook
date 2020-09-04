@@ -55,10 +55,10 @@ ActiveRecord::Schema.define(version: 20200903191306) do
     t.string "last_name", limit: 60
     t.string "password_digest", limit: 60
     t.string "email", limit: 60
-    t.string "provider"
-    t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider", limit: 120
+    t.string "uid", limit: 120
   end
 
   create_table "users_posts", id: false, force: :cascade do |t|
@@ -74,5 +74,4 @@ ActiveRecord::Schema.define(version: 20200903191306) do
   add_foreign_key "friendships", "users", column: "friend_a_id"
   add_foreign_key "friendships", "users", column: "friend_b_id"
   add_foreign_key "users_posts", "posts"
-  add_foreign_key "users_posts", "users"
 end

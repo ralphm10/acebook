@@ -17,6 +17,9 @@ Rails.application.routes.draw do
 
   post '/friend_request/delete', to: 'friend_requests#delete'
   post '/friend_request/new', to: 'friend_requests#create'
+  post '/friend_request/reject', to: 'friend_requests#delete'
+  post '/friend_request/accept', to: 'friend_requests#accept'
+
   post '/friendships/new', to: 'friendships#create'
 
 

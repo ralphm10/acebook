@@ -102,7 +102,14 @@ class User < ApplicationRecord
     friend_request ? true : false
   end
 
+  def accept_pending_friend_request(user_id)
+    FriendRequest.destroy(FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first.id)
+    add_friend(user_id)
+  end
 
+  def reject_pending_friend_request(user_id)
+    FriendRequest.destroy(FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first.id)
+  end
 
   def send_request
 

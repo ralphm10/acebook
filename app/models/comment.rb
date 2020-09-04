@@ -10,5 +10,4 @@ class Comment < ApplicationRecord
   def updatable?
     (Time.now - created_at) <= MAX_TIME_TO_UPDATE
   end
-
 end

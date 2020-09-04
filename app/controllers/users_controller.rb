@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     current_user
   end
@@ -34,5 +33,4 @@ class UsersController < ApplicationController
   def get_params
     params.fetch(:user, {}).permit(:first_name, :last_name, :password, :password_confirmation, :email)
   end
-
 end

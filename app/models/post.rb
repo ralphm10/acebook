@@ -15,5 +15,4 @@ class Post < ApplicationRecord
   def update_time
     MAX_TIME_TO_UPDATE.to_s
   end
-
 end

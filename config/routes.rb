@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   post '/friendships/new', to: 'friendships#create'
 
-  resources :users, :friendships
+  resources :users, :friendships, :friend_requests
   resources :posts do
     resources :comments
   end

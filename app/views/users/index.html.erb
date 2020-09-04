@@ -10,7 +10,8 @@
 
       <div id="subtitle">
         Users
-        <div id="mutual" style="font-size: 14px; color: green; vertical-align: central;"> * is a mutual </div>
+        <div id="users_first_name" style="font-size: 14px;">* is a friend</div>
+        <div id="mutual" style="font-size: 14px; vertical-align: central;"> * is a mutual friend</div>
         <table class="user_table">
           <thead>
           <tr>
@@ -26,7 +27,13 @@
             <% next if user.id == current_user.id %>
             <tr>
               <td><img src=https://loremflickr.com/140/100></td>
-              <td><%= user.first_name %></td>
+              <td>
+                <% if current_user.friends.include?(user) %>
+                  <div id="users_first_name"><%= user.first_name %></div>
+                <% else %>
+                  <%= user.first_name %>
+                <% end %>
+              </td>
               <td><%= user.email.gsub(/.{0,4}@/, '####@') %></td>
               <td>
                 <% if current_user.already_friends_with?(user) %>
@@ -55,7 +62,6 @@
                   <%  end %>
 
                   <% if current_user.friend_request_from?(user.id) && current_user.pending_friend_request?(user.id) %>
-                    THEY ASKED TO BE YOUR FRIEND
                     <%= form_with(scope: FriendRequest, url: "/friend_request/accept") do |f| %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%= f.hidden_field :friend_b_id, value: user.id %>
@@ -73,7 +79,7 @@
               <td style="font-size: 16px">
                 <% user.friends.map do |friend| %>
                   <% if current_user.friends.include?(friend) %>
-                    <div id="mutual" style="color: green"> <%= friend.first_name %> </div>
+                    <div id="mutual"> <%= friend.first_name %> </div>
                   <% else %>
                     <%= friend.first_name %>
                   <% end %>

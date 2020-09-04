@@ -4,8 +4,7 @@ class PostsController < ApplicationController
   before_action :require_login
   include ApplicationHelper
 
-  def show
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -28,7 +27,8 @@ class PostsController < ApplicationController
 
     @post = Post.find(params[:id])
     if !@post.updatable? && (@post.user_id == current_user.id)
-      flash[:alert] = "#{@post.update_time} seconds have elapsed since the post was created. It can no longer be updated"
+      flash[:alert] = "#{@post.update_time} seconds have elapsed since the post
+      was created. It can no longer be updated"
     elsif @post.updatable? && (@post.user_id != current_user.id)
       flash[:alert] = 'Only the owner of the post may edit the post'
     elsif @post.updatable? && (@post.user_id == current_user.id)

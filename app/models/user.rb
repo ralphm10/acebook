@@ -10,7 +10,7 @@ class User < ApplicationRecord
            foreign_key: :receiver_id,
            class_name: 'FriendRequest',
            dependent: :destroy
-  
+
   has_many :friendships, ->(user) { where('friend_a_id = ? OR friend_b_id = ?', user.id, user.id) }, dependent: :destroy
 
   validates :first_name, presence: true
@@ -31,6 +31,7 @@ class User < ApplicationRecord
     return 2 unless first_name_valid?(auth_params[:first_name])
     return 3 unless password_valid?(auth_params[:password])
     return 4 unless password_match?(auth_params[:password], auth_params[:password_confirmation])
+
     nil
   end
 
@@ -102,14 +103,7 @@ class User < ApplicationRecord
     friend_request ? true : false
   end
 
+  def send_request; end
 
-
-  def send_request
-
-  end
-
-  def accept_friend
-
-  end
-
+  def accept_friend; end
 end

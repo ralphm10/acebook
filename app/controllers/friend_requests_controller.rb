@@ -15,5 +15,4 @@ class FriendRequestsController < ApplicationController
   def get_params
     params.fetch(:friend_request, {}).permit(:friend_a_id, :friend_b_id)
   end
-
 end

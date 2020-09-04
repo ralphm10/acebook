@@ -1,6 +1,16 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
+  has_many :friend_requests, dependent: :destroy
+  has_many :friend_requests_as_requestor,
+           foreign_key: :requestor_id,
+           class_name: 'FriendRequest',
+           dependent: :destroy
+  has_many :friend_requests_as_receiver,
+           foreign_key: :receiver_id,
+           class_name: 'FriendRequest',
+           dependent: :destroy
+  
   has_many :friendships, ->(user) { where('friend_a_id = ? OR friend_b_id = ?', user.id, user.id) }, dependent: :destroy
 
   validates :first_name, presence: true
@@ -50,7 +60,7 @@ class User < ApplicationRecord
     )
   end
 
-  def already_friends_with(user)
+  def already_friends_with?(user)
     friends.include?(user)
   end
 
@@ -75,6 +85,24 @@ class User < ApplicationRecord
     friendship = Friendship.where("friend_a_id=#{new_friend_id} AND friend_b_id=#{id}") unless friendship.first
     Friendship.destroy(friendship.first[:id])
   end
+
+  def friend_request_for?(user_id)
+    friend_requests_as_requestor.map { |req| return true if req.receiver_id == user_id }
+    false
+  end
+
+  def friend_request_from?(user_id)
+    friend_requests_as_receiver.map { |req| return true if req.requestor_id == user_id }
+    false
+  end
+
+  def pending_friend_request?(user_id)
+    friend_request = FriendRequest.where("requestor_id=#{id} AND receiver_id=#{user_id}")
+    friend_request = FriendRequest.where("receiver_id=#{user_id} AND requestor_id=#{id}") unless friend_request.first
+    friend_request ? true : false
+  end
+
+
 
   def send_request
 

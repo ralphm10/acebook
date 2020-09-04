@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     if auth_hash
-      return flash[:notice] = 'Your email address must be publicly visible to use OAuth services'
-      if auth_hash[:info][:email].nil?
+      return flash[:notice] =
+      'Your email address must be publicly visible to use OAuth services' if auth_hash[:info][:email].nil?
 
       #       User.find_or_create_by!(email: auth_hash[:info][:email], provider: auth_hash[:provider], uid: auth_hash[:uid]) do |user|
       #         user.first_name = auth_hash[:info][:name]

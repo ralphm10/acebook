@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-
   def show
     current_user
+  end
+
+  def index
+    @users = User.all
+    @friends = User.find(current_user.id).friends
   end
 
   def new
@@ -29,5 +33,4 @@ class UsersController < ApplicationController
   def get_params
     params.fetch(:user, {}).permit(:first_name, :last_name, :password, :password_confirmation, :email)
   end
-
 end

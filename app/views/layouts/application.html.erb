@@ -16,7 +16,7 @@
     <div id="session_functions">
       <% if current_user %>
         Logged in as: <%= current_user.first_name %>
-        <div id="Login"><%= link_to 'Log out', logout_path, method: :delete %></div>
+        <div id="Logout">ID: <%= current_user.id %>  <%= link_to 'Log out', logout_path, method: :delete %></div>
       <% else %>
         Returning user? <%= link_to 'Log in', login_path %>
         |
@@ -25,6 +25,25 @@
     </div>
   </header>
     <div class="page-content">
+      <% if current_user %>
+        <div class="column left">
+          <p><-- Shortcuts go here --></p>
+          <p><%= link_to 'Posts', '/posts'%></p>
+          <p><%= link_to 'All Users', users_index_path %></p>
+          <div id="subtitle">
+            Your shortcuts
+          </div>
+        </div>
+        <div class="column right">
+          <div id="subtitle">
+            Contacts
+          </div>
+          <p><-- Your contacts go here --></p>
+          <% current_user.friends.each do |friend| %>
+            <%= friend.first_name %> <br/>
+          <% end %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

@@ -45,7 +45,7 @@
                     <% end %>
                   <% end %>
 
-                  <% if !current_user.friend_request_for?(user.id) %>
+                  <% unless current_user.friend_request_for?(user.id) %>
                   <%=  form_with(scope: FriendRequest, url: '/friend_request/new') do |f|  %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%=  f.hidden_field :friend_b_id, value: user.id  %>
@@ -64,14 +64,6 @@
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%= f.hidden_field :friend_b_id, value: user.id %>
                       <div class="actions"><%= f.submit "Reject friend request", class: 'submit', id: "reject_friend_#{user.id}", method: :delete  %></div>
-                    <% end %>
-                  <% end %>
-
-                  <% if current_user.friend_request_from?(user.id) %>
-                    <%= form_with(scope: Friendship, url: new_friendship_path) do |f| %>
-                      <%= f.hidden_field :friend_a_id, value: current_user.id %>
-                      <%= f.hidden_field :friend_b_id, value: user.id %>
-                      <div class="actions"><%= f.submit "Add friend", class: 'submit', id: "add_friend_#{user.id}"%></div>
                     <% end %>
                   <% end %>
 

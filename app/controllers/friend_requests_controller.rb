@@ -10,7 +10,7 @@ class FriendRequestsController < ApplicationController
 
   def accept
     current_user.accept_pending_friend_request(get_params[:friend_b_id])
-    flash[:notice] = User.find(get_params[:friend_b_id]).first_name.to_s + " has been added to friends"
+    flash[:notice] = User.find(get_params[:friend_b_id]).first_name.to_s + ' has been added to friends'
     reload_page
   end
 

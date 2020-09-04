@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :post
 
-  MAX_TIME_TO_UPDATE = 600
+  MAX_TIME_TO_UPDATE = 10
 
   def owner
     User.find(poster).first_name

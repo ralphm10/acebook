@@ -5,4 +5,5 @@ class FriendRequestsController < ApplicationController
     p 'WE OUT HERE'
     reload_page
   end
+
 end

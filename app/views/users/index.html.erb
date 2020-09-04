@@ -45,7 +45,7 @@
                     <% end %>
                   <% end %>
 
-                  <% unless current_user.friend_request_for?(user.id) %>
+                  <% if !current_user.friend_request_for?(user.id) && !current_user.friend_request_from?(user.id) %>
                   <%=  form_with(scope: FriendRequest, url: '/friend_request/new') do |f|  %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%=  f.hidden_field :friend_b_id, value: user.id  %>

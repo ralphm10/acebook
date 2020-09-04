@@ -13,33 +13,33 @@
 ActiveRecord::Schema.define(version: 20200903191306) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "comments", force: :cascade do |t|
-    t.string "poster"
-    t.text "message"
-    t.bigint "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
+  create_table 'comments', force: :cascade do |t|
+    t.string 'poster'
+    t.text 'message'
+    t.bigint 'post_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['post_id'], name: 'index_comments_on_post_id'
   end
 
-  create_table "friend_requests", force: :cascade do |t|
-    t.bigint "requestor_id"
-    t.bigint "receiver_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
-    t.index ["requestor_id"], name: "index_friend_requests_on_requestor_id"
+  create_table 'friend_requests', force: :cascade do |t|
+    t.bigint 'requestor_id'
+    t.bigint 'receiver_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['receiver_id'], name: 'index_friend_requests_on_receiver_id'
+    t.index ['requestor_id'], name: 'index_friend_requests_on_requestor_id'
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.bigint "friend_a_id"
-    t.bigint "friend_b_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["friend_a_id"], name: "index_friendships_on_friend_a_id"
-    t.index ["friend_b_id"], name: "index_friendships_on_friend_b_id"
+  create_table 'friendships', force: :cascade do |t|
+    t.bigint 'friend_a_id'
+    t.bigint 'friend_b_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['friend_a_id'], name: 'index_friendships_on_friend_a_id'
+    t.index ['friend_b_id'], name: 'index_friendships_on_friend_b_id'
   end
 
   create_table "posts", force: :cascade do |t|

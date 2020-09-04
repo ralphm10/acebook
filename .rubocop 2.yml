@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+    - 'app/jobs/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'app/channels/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

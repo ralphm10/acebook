@@ -10,7 +10,7 @@ class User < ApplicationRecord
            foreign_key: :receiver_id,
            class_name: 'FriendRequest',
            dependent: :destroy
-  
+
   has_many :friendships, ->(user) { where('friend_a_id = ? OR friend_b_id = ?', user.id, user.id) }, dependent: :destroy
 
   validates :first_name, presence: true
@@ -103,20 +103,34 @@ class User < ApplicationRecord
   end
 
   def accept_pending_friend_request(user_id)
-    FriendRequest.destroy(FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first.id)
+    destroy_pending_requests_from(user_id)
     add_friend(user_id)
   end
 
   def reject_pending_friend_request(user_id)
+    destroy_pending_requests_from(user_id)
+  end
+
+  def remove_pending_friend_request(user_id)
+    FriendRequest.destroy(FriendRequest.where("receiver_id=#{user_id} AND requestor_id=#{id}").first.id)
+  end
+
+  # TODO: Work on this one.
+
+  def check_both_requested?(user_id)
+    if FriendRequest.where("requestor_id=#{user_id} AND requestor_id=#{id}").first &&
+       FriendRequest.where("requestor_id=#{id} AND requestor_id=#{user_id}").first
+      p 'request clash'
+      accept_pending_friend_request(user_id)
+    else
+      false
+    end
+  end
+
+  private
+
+  def destroy_pending_requests_from(user_id)
     FriendRequest.destroy(FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first.id)
-  end
-
-  def send_request
-
-  end
-
-  def accept_friend
-
   end
 
 end

@@ -28,6 +28,8 @@
       <% if current_user %>
         <div class="column left">
           <p><-- Shortcuts go here --></p>
+          <p><%= link_to 'Posts', '/posts'%></p>
+          <p><%= link_to 'All Users', users_index_path %></p>
           <div id="subtitle">
             Your shortcuts
           </div>

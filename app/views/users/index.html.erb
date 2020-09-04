@@ -13,18 +13,35 @@
 
         <table class="user_table">
           <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Email</th>
-            </tr>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Options</th>
+          </tr>
           </thead>
           <tbody>
           <% @users.map do |user| %>
+            <% next if user.id == current_user.id %>
             <tr>
               <td><img src=https://loremflickr.com/140/100></td>
               <td><%= user.first_name %></td>
               <td><%= user.email.gsub(/.{0,4}@/, '####@') %></td>
+              <td>
+                <% if current_user.already_friends_with(user) %>
+                  <%= form_with(scope: Friendship, url: "/friendships/#{current_user.id}", method: :delete) do |f| %>
+                    <%= f.hidden_field :friend_a_id, value: current_user.id %>
+                    <%= f.hidden_field :friend_b_id, value: user.id %>
+                    <div class="actions"><%= f.submit "Remove friend", class: 'submit', id: "remove_friend_#{user.id}"%></div>
+                  <% end %>
+                <% else %>
+                  <%= form_with(scope: Friendship, url: new_friendship_path) do |f| %>
+                    <%= f.hidden_field :friend_a_id, value: current_user.id %>
+                    <%= f.hidden_field :friend_b_id, value: user.id %>
+                    <div class="actions"><%= f.submit "Add friend", class: 'submit', id: "add_friend_#{user.id}"%></div>
+                  <% end %>
+                <% end %>
+              </td>
             </tr>
           <% end %>
           </tbody>

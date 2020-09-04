@@ -50,6 +50,10 @@ class User < ApplicationRecord
     )
   end
 
+  def already_friends_with(user)
+    friends.include?(user)
+  end
+
   def self.password_valid?(password)
     password.length <= 10 && password.length >= 6
   end
@@ -60,6 +64,10 @@ class User < ApplicationRecord
 
   def friends
     Friendship.where('friend_a_id = ? OR friend_b_id = ?', id, id).map { |fs| fs.friend_a_id == id ? fs.friend_b : fs.friend_a }
+  end
+
+  def add_friend(new_friend_id)
+    Friendship.create(friend_a_id: id, friend_b_id: new_friend_id)
   end
 
   def accept_friend

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @friends = User.find(current_user.id).get_friends
+    @friends = User.find(current_user.id).friends
   end
 
   def new

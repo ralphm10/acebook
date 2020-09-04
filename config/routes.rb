@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post '/posts/:post_id/comments/:id', to: 'comments#update'
   get '/posts/:post_id/comments/:id', to: 'comments#show'
 
-  resources :users
+  post '/friendships/new', to: 'friendships#create'
+
+  resources :users, :friendships
   resources :posts do
     resources :comments
   end

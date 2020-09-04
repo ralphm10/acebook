@@ -27,5 +27,5 @@ end
 
 def create_comment
   fill_in 'add_comment', with: 'This is a comment'
-  click_button 'New comment'
+  click_button 'New Comment'
 end

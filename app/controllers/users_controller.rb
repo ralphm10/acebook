@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     current_user
   end
 
+  def index
+    @users = User.all
+    @friends = User.find(current_user.id).friends
+  end
+
   def new
     redirect_to '/posts' if current_user
     @user = User.new

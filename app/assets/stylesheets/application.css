@@ -32,8 +32,8 @@ header {
     z-index: 100;
 }
 a { color: black}
-a:link { text-decoration: none; color:white; }
-a:visited { text-decoration: none; color:white; }
+a:link { text-decoration: none; color:black; }
+a:visited { text-decoration: none; color:black; }
 a:hover { text-decoration: none; color:blue; }
 a:focus { text-decoration: none; color:yellow; }
 a:hover, a:active { text-decoration: none; color:blue }

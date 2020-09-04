@@ -15,7 +15,16 @@ Rails.application.routes.draw do
   post '/posts/:post_id/comments/:id', to: 'comments#update'
   get '/posts/:post_id/comments/:id', to: 'comments#show'
 
-  resources :users
+  post '/friend_request/delete', to: 'friend_requests#delete'
+  post '/friend_request/new', to: 'friend_requests#create'
+  post '/friend_request/reject', to: 'friend_requests#delete'
+  post '/friend_request/accept', to: 'friend_requests#accept'
+  post '/friend_request/remove_pending', to: 'friend_requests#remove_pending'
+  post '/friendships/new', to: 'friendships#create'
+
+
+  resources :friend_requests
+  resources :users, :friendships
   resources :posts do
     resources :comments
   end

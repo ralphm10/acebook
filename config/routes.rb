@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  get '/home', to: 'users#show' #test
+  get '/home', to: 'users#show' # test
 
   get '/create_session', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   post '/friend_request/delete', to: 'friend_requests#delete'
   post '/friend_request/new', to: 'friend_requests#create'
   post '/friendships/new', to: 'friendships#create'
-
 
   resources :friend_requests
   resources :users, :friendships

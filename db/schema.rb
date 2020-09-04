@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20200903191306) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -42,37 +41,37 @@ ActiveRecord::Schema.define(version: 20200903191306) do
     t.index ['friend_b_id'], name: 'index_friendships_on_friend_b_id'
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "message"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_posts_on_user_id"
+  create_table 'posts', force: :cascade do |t|
+    t.string 'message'
+    t.bigint 'user_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_posts_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "first_name", limit: 60
-    t.string "last_name", limit: 60
-    t.string "password_digest", limit: 60
-    t.string "email", limit: 60
-    t.string "provider"
-    t.string "uid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'first_name', limit: 60
+    t.string 'last_name', limit: 60
+    t.string 'password_digest', limit: 60
+    t.string 'email', limit: 60
+    t.string 'provider'
+    t.string 'uid'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users_posts", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.index ["post_id"], name: "index_users_posts_on_post_id"
-    t.index ["user_id"], name: "index_users_posts_on_user_id"
+  create_table 'users_posts', id: false, force: :cascade do |t|
+    t.bigint 'user_id'
+    t.bigint 'post_id'
+    t.index ['post_id'], name: 'index_users_posts_on_post_id'
+    t.index ['user_id'], name: 'index_users_posts_on_user_id'
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "friend_requests", "users", column: "receiver_id"
-  add_foreign_key "friend_requests", "users", column: "requestor_id"
-  add_foreign_key "friendships", "users", column: "friend_a_id"
-  add_foreign_key "friendships", "users", column: "friend_b_id"
-  add_foreign_key "users_posts", "posts"
-  add_foreign_key "users_posts", "users"
+  add_foreign_key 'comments', 'posts'
+  add_foreign_key 'friend_requests', 'users', column: 'receiver_id'
+  add_foreign_key 'friend_requests', 'users', column: 'requestor_id'
+  add_foreign_key 'friendships', 'users', column: 'friend_a_id'
+  add_foreign_key 'friendships', 'users', column: 'friend_b_id'
+  add_foreign_key 'users_posts', 'posts'
+  add_foreign_key 'users_posts', 'users'
 end

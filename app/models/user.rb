@@ -115,9 +115,11 @@ class User < ApplicationRecord
   end
 
   def remove_pending_friend_request(user_id)
-    return if FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first.nil? &&
+    primary_friend_request = FriendRequest.where("receiver_id=#{id} AND requestor_id=#{user_id}").first
+    return if primary_friend_request.nil? &&
               FriendRequest.where("receiver_id=#{user_id} AND requestor_id=#{id}").first.nil?
-    FriendRequest.destroy(FriendRequest.where("receiver_id=#{user_id} AND requestor_id=#{id}").first.id)
+
+    FriendRequest.where("receiver_id=#{user_id} AND requestor_id=#{id}").destroy_all
   end
 
   def check_friend_request_clash?

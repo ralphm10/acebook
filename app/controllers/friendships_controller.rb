@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = 'Friend removed'
+    flash[:notice] = 'Removal complete'
     current_user.remove_friend(get_params[:friend_b_id])
     reload_page
   end

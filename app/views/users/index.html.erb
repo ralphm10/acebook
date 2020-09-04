@@ -10,14 +10,15 @@
 
       <div id="subtitle">
         Users
-
+        <div id="mutual" style="font-size: 14px; color: green; vertical-align: central;"> * is a mutual </div>
         <table class="user_table">
           <thead>
           <tr>
-            <th>Image</th>
+            <th></th>
             <th>Name</th>
             <th>Email</th>
             <th>Options</th>
+            <th>Connections </th>
           </tr>
           </thead>
           <tbody>
@@ -67,6 +68,16 @@
                     <% end %>
                   <% end %>
 
+                <% end %>
+              </td>
+              <td style="font-size: 16px">
+                <% user.friends.map do |friend| %>
+                  <% if current_user.friends.include?(friend) %>
+                    <div id="mutual" style="color: green"> <%= friend.first_name %> </div>
+                  <% else %>
+                    <%= friend.first_name %>
+                  <% end %>
+                  <br/>
                 <% end %>
               </td>
             </tr>

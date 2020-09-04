@@ -10,14 +10,16 @@
 
       <div id="subtitle">
         Users
-
+        <div id="users_first_name" style="font-size: 14px;">* is a friend</div>
+        <div id="mutual" style="font-size: 14px; vertical-align: central;"> * is a mutual friend</div>
         <table class="user_table">
           <thead>
           <tr>
-            <th>Image</th>
+            <th></th>
             <th>Name</th>
             <th>Email</th>
             <th>Options</th>
+            <th>Connections </th>
           </tr>
           </thead>
           <tbody>
@@ -25,7 +27,13 @@
             <% next if user.id == current_user.id %>
             <tr>
               <td><img src=https://loremflickr.com/140/100></td>
-              <td><%= user.first_name %></td>
+              <td>
+                <% if current_user.friends.include?(user) %>
+                  <div id="users_first_name"><%= user.first_name %></div>
+                <% else %>
+                  <%= user.first_name %>
+                <% end %>
+              </td>
               <td><%= user.email.gsub(/.{0,4}@/, '####@') %></td>
               <td>
                 <% if current_user.already_friends_with?(user) %>
@@ -37,15 +45,14 @@
                 <% else %>
 
                   <% if current_user.friend_request_for?(user.id) && current_user.pending_friend_request?(user.id) %>
-                   YOU ASKED TO BE A FRIEND
-                    <%= form_with(scope: FriendRequest, url: "/friend_request/delete") do |f| %>
+                    <%= form_with(scope: FriendRequest, url: "/friend_request/remove_pending") do |f| %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%= f.hidden_field :friend_b_id, value: user.id %>
-                      <div class="actions"><%= f.submit "Remove pending request", class: 'submit', id: "accept_friend_#{user.id}", method: :delete %></div>
+                      <div class="actions"><%= f.submit "Remove pending request", class: 'submit', id: "accept_friend_#{user.id}" %></div>
                     <% end %>
                   <% end %>
 
-                  <% if !current_user.friend_request_for?(user.id) %>
+                  <% if !current_user.friend_request_for?(user.id) && !current_user.friend_request_from?(user.id) %>
                   <%=  form_with(scope: FriendRequest, url: '/friend_request/new') do |f|  %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%=  f.hidden_field :friend_b_id, value: user.id  %>
@@ -54,23 +61,28 @@
                   <%  end %>
 
                   <% if current_user.friend_request_from?(user.id) && current_user.pending_friend_request?(user.id) %>
-                    THEY ASKED TO BE YOUR FRIEND
-                    <%= form_with(scope: FriendRequest, url: "/friendrequest/accept") do |f| %>
+                    <%= form_with(scope: FriendRequest, url: "/friend_request/accept") do |f| %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%= f.hidden_field :friend_b_id, value: user.id %>
                       <div class="actions"><%= f.submit "Accept friend request", class: 'submit', id: "accept_friend_#{user.id}", method: :accept %></div>
-                      <div class="actions"><%= f.submit "Reject friend request", class: 'submit', id: "reject_friend_#{user.id}", method: :delete %></div>
                     <% end %>
-                  <% end %>
-
-                  <% if current_user.friend_request_from?(user.id) %>
-                    <%= form_with(scope: Friendship, url: new_friendship_path) do |f| %>
+                    <%= form_with(scope: FriendRequest, url: '/friend_request/reject') do |f| %>
                       <%= f.hidden_field :friend_a_id, value: current_user.id %>
                       <%= f.hidden_field :friend_b_id, value: user.id %>
-                      <div class="actions"><%= f.submit "Add friend", class: 'submit', id: "add_friend_#{user.id}"%></div>
+                      <div class="actions"><%= f.submit "Reject friend request", class: 'submit', id: "reject_friend_#{user.id}", method: :delete  %></div>
                     <% end %>
                   <% end %>
 
+                <% end %>
+              </td>
+              <td style="font-size: 16px">
+                <% user.friends.map do |friend| %>
+                  <% if current_user.friends.include?(friend) %>
+                    <div id="mutual"> <%= friend.first_name %> </div>
+                  <% else %>
+                    <%= friend.first_name %>
+                  <% end %>
+                  <br/>
                 <% end %>
               </td>
             </tr>

@@ -22,7 +22,7 @@ RSpec.feature 'comments', type: :feature do
   end
 
   scenario 'Can delete a comment' do
-    click_link 'Delete comment'
+    click_link 'Delete Comment'
     expect(page).to_not have_content('This is a comment')
     expect(page).to have_content('Comment Deleted')
   end

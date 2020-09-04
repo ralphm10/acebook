@@ -25,44 +25,11 @@
       </div>
       <div class="notice"><%= flash[:alert] %></div>
           <% @posts.each do |post| %>
-        <div id="posts" style="border-radius: 25px; border: 1px solid black; padding: 10px; width: 50%;">
+        <div id="posts" >
 
           <p> <%= post.owner %> posted: </p>
+          <div id="message_body">
           <p><%= post.message.gsub(/(\r)?\n/, "<br/>").html_safe %></p>
-
-          <div id="comments" style="margin-left: 10px;">
-            <% post.comments.each do |comment| %>
-              <%= comment.owner %> posted: <br/>
-              <%= comment.message %> <br/>
-
-              <% if comment.updatable? && (comment.poster.to_i == current_user.id) %>
-                <div id="update_comment">
-                  <%= form_with(scope: :comment, url: post_comment_path(post, id: comment.id), method: :update) do |form| %>
-                    <%= form.text_area :message, id: 'update_comment' %>
-                    <br/>
-                    <%= form.submit "Update Comment", method: :update%>
-                  <% end %>
-                </div>
-              <% end %>
-
-              <%= comment.created_at.localtime.strftime('%k:%M') %> | <%= comment.created_at.localtime.strftime('%d/%m/%Y') %> <br/>
-
-              <% if comment.poster.to_i == current_user.id %>
-                <div id="delete_comment">
-                  <%= link_to 'Delete comment', post_comments_path(comment), method: :delete, data: { confirm: 'Confirm delete'} %>
-                </div>
-              <% end %>
-
-              <hr/>
-            <% end %>
-
-            <%= form_with(model: [ post, post.comments.build ], local: true) do |form| %>
-            <p>
-              <%= form.text_area :message, id: 'add_comment'%>
-            </p>
-              <p><%= form.submit 'New comment' %></p>
-            <% end %>
-
           </div>
 
           <% if post.updatable? && (post.user_id == current_user.id) %>
@@ -74,13 +41,47 @@
               <% end %>
             </div>
           <% end %>
-          <p> <%= post.created_at.localtime.strftime('%k:%M') %> | <%= post.created_at.localtime.strftime('%d/%m/%Y') %><p>
-
-        <% if post.user_id == current_user.id %>
-          <div id="delete_post">
-            <%= link_to 'Delete post', post_path(post), method: :delete, data: { confirm: 'Confirm delete'} %>
-          </div>
+          <div id="time_and_delete">
+            <%= post.created_at.localtime.strftime('%k:%M') %> | <%= post.created_at.localtime.strftime('%d/%m/%Y') %>
+          <% if post.user_id == current_user.id %>
+            <%= link_to 'Delete Post', post_path(post), method: :delete, data: { confirm: 'Confirm Delete'} %>
           <% end %>
+          </div>
+
+          <hr />
+
+          <div id="comments" style="margin-left: 20px;">
+            <% post.comments.each do |comment| %>
+              <%= comment.owner %> commented: <br/>
+              <div id="comment_body">
+              <%= comment.message %> <br/>
+              </div>
+              <div id="time_and_delete">
+              <%= comment.created_at.localtime.strftime('%k:%M') %> | <%= comment.created_at.localtime.strftime('%d/%m/%Y') %>
+              <% if comment.poster.to_i == current_user.id %>
+                  <%= link_to 'Delete Comment', post_comments_path(comment), method: :delete, class: :delete, data: { confirm: 'Confirm delete'} %>
+              <% end %>
+              </div>
+              <% if comment.updatable? && (comment.poster.to_i == current_user.id) %>
+                <div id="update_comment">
+                  <%= form_with(scope: :comment, url: post_comment_path(post, id: comment.id), method: :update) do |form| %>
+                    <%= form.text_area :message, id: 'update_comment' %>
+                    <br/>
+                    <%= form.submit "Update Comment", method: :update, :class => "submit" %>
+                  <% end %>
+                </div>
+              <% end %>
+
+
+            <% end %>
+
+            <%= form_with(model: [ post, post.comments.build ], local: true) do |form| %>
+            <p>
+              <%= form.text_area :message, id: 'add_comment'%>
+            </p>
+              <p><%= form.submit "New Comment", :class => 'submit' %></p>
+            <% end %>
+            </div>
 
         <br/>
         </div>

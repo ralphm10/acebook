@@ -15,3 +15,5 @@ Style/SymbolArray:
   EnforcedStyle: brackets
 Documentation:
   Enabled: false
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context', 'feature', 'define']

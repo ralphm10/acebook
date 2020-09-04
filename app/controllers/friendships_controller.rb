@@ -19,7 +19,6 @@ class FriendshipsController < ApplicationController
     #p current_user.friends
     # Friendship.where(friend_a_id: current_user.id, friend_b_id: get_params[:friend_b])  || Friendship.where(friend_a_id: get_params[:friend_b], friend_b_id: current_user.id)
     #p Friendship.where("friend_a_id = #{current_user.id} AND friend_b_id = #{get_params[:friend_b_id]} OR friend_a_id = #{get_params[:friend_b_id]} AND friend_b_id = #{current_user.id}")
-    p get_params[:friend_b_id]
     p current_user.remove_friend(get_params[:friend_b_id])
     reload_page
   end

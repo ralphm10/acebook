@@ -70,6 +70,16 @@ class User < ApplicationRecord
     Friendship.create(friend_a_id: id, friend_b_id: new_friend_id)
   end
 
+  def remove_friend(new_friend_id)
+    friendship = Friendship.where("friend_a_id=#{id} AND friend_b_id=#{new_friend_id}")
+    friendship = Friendship.where("friend_a_id=#{new_friend_id} AND friend_b_id=#{id}") unless friendship.first
+    Friendship.destroy(friendship.first[:id])
+  end
+
+  def send_request
+
+  end
+
   def accept_friend
 
   end

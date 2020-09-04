@@ -74,4 +74,5 @@ ActiveRecord::Schema.define(version: 20200903191306) do
   add_foreign_key "friendships", "users", column: "friend_a_id"
   add_foreign_key "friendships", "users", column: "friend_b_id"
   add_foreign_key "users_posts", "posts"
+  add_foreign_key "users_posts", "users"
 end

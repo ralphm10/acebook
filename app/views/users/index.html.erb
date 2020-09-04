@@ -15,7 +15,6 @@
         <table class="user_table">
           <thead>
           <tr>
-            <th></th>
             <th>Name</th>
             <th>Email</th>
             <th>Options</th>
@@ -26,7 +25,6 @@
           <% @users.map do |user| %>
             <% next if user.id == current_user.id %>
             <tr>
-              <td><img src=https://loremflickr.com/140/100></td>
               <td>
                 <% if current_user.friends.include?(user) %>
                   <div id="users_first_name"><%= user.first_name %></div>

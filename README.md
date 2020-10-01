@@ -1,4 +1,4 @@
-# AceBook [![Build Status](https://travis-ci.com/ralphm10/acebook.svg?branch=master)](https://travis-ci.com/ralphm10/acebook)
+# Acebook [![Build Status](https://travis-ci.com/ralphm10/acebook.svg?branch=master)](https://travis-ci.com/ralphm10/acebook)
 
 A social networking application built using ruby on rails. The running application is deployed on Heroku [here](http://acebook-team-2.herokuapp.com/).
 

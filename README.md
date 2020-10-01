@@ -13,6 +13,11 @@ This was a group project as part of the [Makers](https://makers.tech/) course, c
 
 The requirements for the project were pre-defined and can be found on this [Tello board](https://trello.com/b/HVRrhmGs/acebook-project-team-2). From these, we extracted out a number of user stories which are defined below, and split out according to functionality.  
 
+## Screenshots
+
+<img src="acebook_1.png" />
+<img src="acebook_2.png" />
+
 ## Getting started
 ```
 > git clone https://github.com/ralphm10/acebook/
@@ -25,14 +30,9 @@ The requirements for the project were pre-defined and can be found on this [Tell
 `rails server`<br/>
 Navigate to: `http://localhost:3000/`
 
-
 ## Running tests
 
 `rspec`
-
-### Database schema
-
-<img src="db_schema.png" />
 
 ## User Stories
 
@@ -155,3 +155,6 @@ As a user
 So that I know my comment has been deleted
 I want to see a confirmation message
 ```
+### Database schema
+
+<img src="db_schema.png" />

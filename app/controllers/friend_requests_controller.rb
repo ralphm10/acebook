@@ -1,8 +1,6 @@
 class FriendRequestsController < ApplicationController
   include ApplicationHelper
 
-  # TODO: current_user.friend_requests ==> friend request objects similar to current_user.friends
-
   def create
     FriendRequest.create(requestor_id: current_user.id, receiver_id: get_params[:friend_b_id])
     flash[:notice] = user_b.first_name + ' has been added to friends' if current_user.check_friend_request_clash?

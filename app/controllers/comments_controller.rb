@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
 
   def show; end
 
-  # TODO: not displaying newest first
   def index
     @comments = Comment.order(created_at: :desc)
   end

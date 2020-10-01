@@ -1,23 +1,35 @@
 # AceBook
 
-A social networking application built using ruby on rails
+A social networking application built using ruby on rails. The running application is deployed on Heroku [here](http://acebook-team-2.herokuapp.com/).
 
-## To run project on heroku
+This was a group project as part of the [Makers](https://makers.tech/) course, completed by the follwing team members;
 
-http://acebook-team-2.herokuapp.com
+* [Ralph Mallett](https://github.com/ralphm10/)
+* [Daniel Morris](https://github.com/dwram/)
+* [Melanie Anderson](https://github.com/melanieanderson1995/)
+* [Paul Humphreys](https://github.com/phump81/)
+* [Paul Shields](https://github.com/02ship/)
+* [Patricia Rocha](https://github.com/ROCHAAL/)
 
-## To run project locally
+The requirements for the project were pre-defined and can be found on this [Tello board](https://trello.com/b/HVRrhmGs/acebook-project-team-2). From these, we extracted out a number of user stories which are defined below, and split out according to functionality.  
 
-First, clone this repository. Then:
-
-```bash
-> bundle install
-> bin/rails db:create
-> bin/rails db:migrate 
-
-> bundle exec rspec # Run the tests to ensure it works
-> bin/rails server # Start the server at localhost:3000
+## Getting started
 ```
+> git clone https://github.com/ralphm10/acebook/
+> bundle install
+> rails db:create
+> rails db:migrate 
+```
+## Usage
+
+`rails server`<br/>
+Navigate to: `http://localhost:3000/`
+
+
+## Running tests
+
+`rspec`
+
 ### Database schema
 
 <img src="db_schema.png" />
@@ -27,7 +39,7 @@ First, clone this repository. Then:
 ### Sign-up
 
 ```
-As a new User
+As a new user
 So that I can see that I am not signed in
 I would like to be redirected to the homepage by default
 
@@ -35,7 +47,7 @@ As a non-signed up user
 So that I am encouraged to sign-up
 I should be redirected to the homepage when I visit any other url
 
-As a new User
+As a new user
 So that I can sign up
 I would like to provide a email and password 
 
@@ -43,7 +55,7 @@ As a new user
 So I can enter my email accurately
 I would only like valid email addresses to be accepted
 
-As a new User
+As a new user
 So that I can enter a secure password
 I would like to see an error message if my password is not valid
 
@@ -79,7 +91,7 @@ I would like to be able to login via github
 ### Posts
 
 ```
-As a User
+As a user
 So that I can share updates with other users
 I would like to be able to make posts
 
